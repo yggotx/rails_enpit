@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+- 2.1.2
+- 1.9.3
+- jruby-19mode
+- rbx-2
+deploy:
+  provider: heroku
+  api_key:
+    secure: eea1Fr4CUTtirIQhiXXIbsNR/g0AXW7GXSvQINFfkQFBTiJ7VPherWyBoRfuptHjatHWQMwZnoImNanOlDu2W1piwmY83D6bN3Yq4gOBrG4BnRxq7JMCFeVslyERfO6xi9JmAPNMr09bTZV0YVIMYoMMRT1OMHhtfWA5ieH3uUs=
+  app: ancient-journey-5132
+  on:
+    repo: yggotx/rails_enpit
+addons:
+postgresql: "9.3"
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+
